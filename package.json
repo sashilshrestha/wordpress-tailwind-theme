@@ -12,18 +12,21 @@
   "text_domain": "tailpress",
   "license": "MIT",
   "scripts": {
+    "production:sass": "sass ./resources/scss/main.scss ./resources/css/custom.css",
     "production:css-app": "cross-env NODE_ENV=development tailwindcss -i ./resources/css/app.css -o ./css/app.css --postcss --minify",
     "production:css-editor": "cross-env NODE_ENV=development tailwindcss -i ./resources/css/editor-style.css -o ./css/editor-style.css --postcss --minify",
     "production:js": "cross-env NODE_ENV=development ./node_modules/.bin/esbuild ./resources/js/app.js --bundle --outfile=./js/app.js --minify",
+    "dev:sass": "sass ./resources/scss/main.scss ./resources/css/custom.css",
     "dev:css-app": "cross-env NODE_ENV=development tailwindcss -i ./resources/css/app.css -o ./css/app.css --postcss",
     "dev:css-editor": "cross-env NODE_ENV=development tailwindcss -i ./resources/css/editor-style.css -o ./css/editor-style.css --postcss",
     "dev:js": "cross-env NODE_ENV=development ./node_modules/.bin/esbuild ./resources/js/app.js --bundle --outfile=./js/app.js",
+    "watch:sass": "sass ./resources/scss/main.scss ./resources/css/custom.css --watch",
     "watch:css-app": "cross-env NODE_ENV=development tailwindcss -i ./resources/css/app.css -o ./css/app.css --postcss --watch",
     "watch:css-editor": "cross-env NODE_ENV=development tailwindcss -i ./resources/css/editor-style.css -o ./css/editor-style.css --postcss --watch",
     "watch:js": "cross-env NODE_ENV=development ./node_modules/.bin/esbuild ./resources/js/app.js --bundle --outfile=./js/app.js --watch",
-    "production": "cross-env NODE_ENV=production concurrently \"npm run production:css-app\" \"npm run production:css-editor\" \"npm run production:js\"",
-    "dev": "cross-env NODE_ENV=development concurrently \"npm run dev:css-app\" \"npm run dev:css-editor\" \"npm run dev:js\"",
-    "watch": "cross-env NODE_ENV=development concurrently \"npm run watch:css-app\" \"npm run watch:css-editor\" \"npm run watch:js\"",
+    "production": "cross-env NODE_ENV=production concurrently \"npm run production:css-app\" \"npm run production:sass\" \"npm run production:css-editor\" \"npm run production:js\"",
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run dev:sass\" \"npm run dev:css-app\" \"npm run dev:css-editor\" \"npm run dev:js\"",
+    "watch": "cross-env NODE_ENV=development concurrently \"npm run watch:sass\" \"npm run watch:css-app\" \"npm run watch:css-editor\" \"npm run watch:js\"",
     "browser-sync": "cross-env NODE_ENV=development browser-sync start --proxy \"localhost/Miracle\" --host=\"localhost/Miracle\" --no-inject-changes --files=\"./\"",
     "watch-sync": "cross-env NODE_ENV=development concurrently \"npm run browser-sync\" \"npm run watch\"",
     "zip": "node node_scripts/zip.js miracle-theme"
@@ -39,6 +42,7 @@
     "postcss-import": "^14.0.0",
     "postcss-nested-ancestors": "^2.0.0",
     "resolve-url-loader": "^3.1.2",
+    "sass": "^1.56.1",
     "tailwindcss": "^3.2.0"
   },
   "dependencies": {
